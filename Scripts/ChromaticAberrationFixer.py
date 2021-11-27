@@ -18,7 +18,7 @@ def star_detection(image):  # based on https://github.com/TheMaster6417/StarRemo
     imageG = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # cv2.imshow('original', image)
     # cv2.imshow('greyscale', imageG)
-    template = cv2.imread('airplanesinthenightskyarelike.png', 0)
+    template = cv2.imread('../Images/airplanesinthenightskyarelike.png', 0)
     w, h = template.shape[::-1]
 
 
@@ -31,16 +31,20 @@ def star_detection(image):  # based on https://github.com/TheMaster6417/StarRemo
 
     i = 0
 
+
+
     loc2 = list(zip(*loc[::-1]))
-    print(len(loc2))
+    pbar = tqdm.tqdm(len(loc2))
     for pt in loc2:
         Detected = cv2.rectangle(image, pt, (pt[0] + w, pt[1] + h), (0,0,255), 1)
         #cv2.rectangle(mask, (pt[0] + 4, pt[1] + 4), (pt[0] + w - 3, pt[1] + h - 3), 255, -1)
         # Reduce the size of the rectangle by 3 pixels from each side. old method by rotem
-        cv2.circle(mask, (pt[0] + 4, pt[1] + 4), (w - h + 3), 255, -3)  # faster method
+        cv2.circle(mask, (pt[0] + 4, pt[1] + 4), (w - h + 3), 255, -10)  # faster method
+        pbar.update(1)
         # use both methods and it stil workss/might be better idk its late ok
     #cv2.imshow("Detected",Detected)
-    #cv2.imshow("mask", mask)
+    pbar.close()
+    cv2.imshow("mask", mask)
     cv2.waitKey(0)
 
 def remove_dem(mask, image):
