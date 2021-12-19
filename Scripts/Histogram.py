@@ -17,7 +17,7 @@ plt.hist(image[:, :, 2].ravel(), bins=128, color='Blue', alpha=transparency)
 plt.legend(['Total', 'Red', 'Green', 'Blue'])
 try:
     plt.savefig(f"{file}1.jpg")
-except:
+except FileNotFoundError as e:
     print("Error saving file...")
     print("Passing...")
 plt.show()
