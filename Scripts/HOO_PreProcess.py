@@ -7,13 +7,8 @@ https://pixinsight.com/forum/index.php?threads/beginner-need-help-in-processing-
 This is the premise of this HOO preprocessor, made for people without a program with pixelmath functions.
 """
 
-import sys
 import tifffile
 import numpy as np
-
-file = sys.argv[1]
-out = sys.argv[2]
-
 
 
 def HOO(file, out):
@@ -35,9 +30,7 @@ def HOO(file, out):
     tifffile.imsave(f"{out}.tiff", arr)
     print("Finished writing to", out)
 
+
 if __name__ == "__main__":
-    HOO(file, out)
-
-
-
-
+    import sys
+    HOO(sys.argv[1], sys.argv[2])
