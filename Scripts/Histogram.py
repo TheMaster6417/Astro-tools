@@ -9,10 +9,10 @@ transparency = float(0.4)
 plt.xlabel('Intensity Value')
 plt.ylabel('Count')
 
-plt.hist(image.ravel(), bins = 128, color = 'grey', alpha = 0.5)
-plt.hist(image[:, :, 0].ravel(), bins = 128, color = 'red', alpha = transparency)
-plt.hist(image[:, :, 1].ravel(), bins = 128, color = 'Green', alpha = transparency)
-plt.hist(image[:, :, 2].ravel(), bins = 128, color = 'Blue', alpha = transparency)
+plt.hist(image.ravel(), bins=128, color='grey', alpha=0.5)
+plt.hist(image[:, :, 0].ravel(), bins=128, color='red', alpha=transparency)
+plt.hist(image[:, :, 1].ravel(), bins=128, color='Green', alpha=transparency)
+plt.hist(image[:, :, 2].ravel(), bins=128, color='Blue', alpha=transparency)
 
 plt.legend(['Total', 'Red', 'Green', 'Blue'])
 try:
