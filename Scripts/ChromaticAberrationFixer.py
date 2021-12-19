@@ -2,9 +2,6 @@ import numpy as np
 import cv2
 import tqdm
 import sys
-import time
-import pandas as pd
-import matplotlib.pyplot as plt
 
 threshold = 0.2
 
