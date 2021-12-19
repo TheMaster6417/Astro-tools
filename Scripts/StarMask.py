@@ -1,5 +1,3 @@
-import os
-import cv2 as cv
 import sys
 from sys import platform
 if platform == "linux" or platform == "linux2":
