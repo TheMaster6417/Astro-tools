@@ -5,14 +5,8 @@ import sys
 
 threshold = 0.2
 
-image = sys.argv[1]
-image = cv2.imread(image)
-image = cv2.resize(image, (800, 800))
-
 
 def star_detection(image):  # based on https://github.com/TheMaster6417/StarRemoval/blob/main/starFunctions.py
-    global imageG, mask, Detected
-
     imageG = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # cv2.imshow('original', image)
     # cv2.imshow('greyscale', imageG)
@@ -25,24 +19,21 @@ def star_detection(image):  # based on https://github.com/TheMaster6417/StarRemo
     # masking by rotem on stackoverflow
     mask = np.zeros_like(imageG)
 
-    i = 0
-
     loc2 = list(zip(*loc[::-1]))
     pbar = tqdm.tqdm(len(loc2))
     for pt in loc2:
-        Detected = cv2.rectangle(image, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 1)
-        # cv2.rectangle(mask, (pt[0] + 4, pt[1] + 4), (pt[0] + w - 3, pt[1] + h - 3), 255, -1)
         # Reduce the size of the rectangle by 3 pixels from each side. old method by rotem
         cv2.circle(mask, (pt[0] + 4, pt[1] + 4), (w - h + 3), 255, -10)  # faster method
         pbar.update(1)
-        # use both methods and it stil workss/might be better idk its late ok
-    # cv2.imshow("Detected",Detected)
+        # use both methods, and it still works/might be better IDK its late ok
     pbar.close()
     cv2.imshow("mask", mask)
     cv2.waitKey(0)
 
+    return mask
 
-def remove_dem(mask, image):
+
+def remove_dem(mask):
     mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
     hsvImage = cv2.cvtColor(mask, cv2.COLOR_BGR2HSV)
     hsvImageCopy = hsvImage.copy()
@@ -67,5 +58,10 @@ def remove_dem(mask, image):
     cv2.waitKey(0)
 
 
-star_detection(image)
-remove_dem(mask, image)
+if __name__ == '__main__':
+    image = sys.argv[1]
+    image = cv2.imread(image)
+    image = cv2.resize(image, (800, 800))
+
+    star_mask = star_detection(image)
+    remove_dem(star_mask)
