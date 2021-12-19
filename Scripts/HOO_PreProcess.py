@@ -1,10 +1,11 @@
 """
-R: integration_R (your file may not be called "integration" but whatever it is, the red channel will have the suffix "_R")
+R: integration_R (your file may not be called "integration" but whatever it is, the red channel will have the suffix
+                  "_R")
 G: (integration_B+integration_G)/2
 B: ((integration_B+integration_G)/2)*0.85 + integration_R*0.15
 https://pixinsight.com/forum/index.php?threads/beginner-need-help-in-processing-hoo.14228/
 
-This is the premise of this HOO preprocessor, made for people without a program with pixelmath functions.
+This is the premise of this HOO preprocessor, made for people without a program with pixel-math functions.
 """
 
 import tifffile
