@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 import skimage.io
 import skimage.color
 
-file = "../TestImages/Downloaded Test image.tif"
+file = "../Images/test.png"
 image = skimage.io.imread(file)
 
 transparency = float(0.4)
